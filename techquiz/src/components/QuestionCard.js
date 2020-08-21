@@ -14,10 +14,18 @@ class QuestionCard extends Component {
 
     constructor(props){
         super(props);
+        this.state = {
+            buttonColors: {
+                one: "default",
+                two: "default",
+                three: "default",
+                four: "default"
+            }
+        }
     }
     
     buttonClick(){
-        
+        this.setState({ buttonColors:{ [this.props.correctAnswer] : "primary"}})
     }
 
     render(){
@@ -43,16 +51,16 @@ class QuestionCard extends Component {
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
-                              <Button variant="contained" size="small" color="primary">
+                              <Button variant="contained" size="small" color={this.state.buttonColors.one} onClick={() => this.buttonClick() }>
                                   {this.props.answers.one}
                               </Button>
-                              <Button variant="contained" size="small" color="primary">
+                              <Button variant="contained" size="small" color={this.state.buttonColors.two}>
                                   {this.props.answers.two}
                               </Button>
-                              <Button variant="contained" size="small" color="primary">
+                              <Button variant="contained" size="small" color={this.state.buttonColors.three}>
                                   {this.props.answers.three}
                               </Button>
-                              <Button variant="contained" size="small" color="primary">
+                              <Button variant="contained" size="small" color={this.state.buttonColors.four}>
                                   {this.props.answers.four}
                               </Button>
                         </CardActions>
