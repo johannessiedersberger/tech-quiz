@@ -20,50 +20,48 @@ import Grid from '@material-ui/core/Grid';
   
   });
   
-  function MediaCard() {
+  function MediaCard(props) {
     const classes = useStyles();
   
     return (
-        <Grid
-        alignItems="center"
-        justify="center"
-       >
-           <Grid item xs={12}>
-      <Card className={classes.root}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image="https://www.riddle.com/imageservice/q_80,f_auto,c_fill,w_960,h_540/yucp0bhylyfxnkacespt"
-            title="TEchQuestion Title"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              Cars
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-                Which was the first company in California
-                to be granted a permit to allow driverless vehicles on public roads?
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button variant="contained" size="small" color="primary">
-            Cruise
-          </Button>
-          <Button variant="contained" size="small" color="primary">
-            Tesla
-          </Button>
-          <Button variant="contained" size="small" color="primary">
-            Zoox
-          </Button>
-          <Button variant="contained" size="small" color="primary">
-            Waymo
-          </Button>
-        </CardActions>
-      </Card>
-      </Grid>      
- </Grid>
-    );
+          <Grid
+              alignItems="center"
+              justify="center"
+          >
+              <Grid item xs={12}>
+                  <Card className={classes.root}>
+                      <CardActionArea>
+                          <CardMedia
+                              className={classes.media}
+                              image={props.image}
+                          />
+                          <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    {props.category}
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    {props.question}
+                                </Typography>
+                          </CardContent>
+                      </CardActionArea>
+                      <CardActions>
+                            <Button variant="contained" size="small" color="primary">
+                                {props.answers.one}
+                            </Button>
+                            <Button variant="contained" size="small" color="primary">
+                                {props.answers.two}
+                            </Button>
+                            <Button variant="contained" size="small" color="primary">
+                                {props.answers.three}
+                            </Button>
+                            <Button variant="contained" size="small" color="primary">
+                                {props.answers.four}
+                            </Button>
+                      </CardActions>
+                  </Card>
+              </Grid>
+          </Grid>
+      );
   }
 
 class QuestionsComponent extends Component {
@@ -73,7 +71,13 @@ class QuestionsComponent extends Component {
     
     render(){
         return(        
-            <MediaCard/>
+            <MediaCard
+                category="Cars"
+                question="Which was the first company in California
+                to be granted a permit to allow driverless vehicles on public roads?"
+                image="https://www.riddle.com/imageservice/q_80,f_auto,c_fill,w_960,h_540/yucp0bhylyfxnkacespt"
+                answers={{one: "Cruise", two: "Tesla", three: "Zoox", four: "Waymo"}}
+                />
         );
     }
 }

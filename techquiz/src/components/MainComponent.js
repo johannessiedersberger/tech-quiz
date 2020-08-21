@@ -11,14 +11,13 @@ class MainComponent extends Component {
                 <HeaderComponent/>
                     <div className="container-fluid" >
                         <div className="row">
-                            <div style={{float: "none", margin: "0 auto" }} >
+                            <div style={{float: "none", margin: "0 auto", paddingTop: 20 }} >
                                 <QuestionsComponent/>
                             </div>
                         </div>
                     </div>
             </div>
         );
-        
     }
 }
 
