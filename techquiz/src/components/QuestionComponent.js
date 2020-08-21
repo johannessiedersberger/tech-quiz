@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import 'bootstrap/dist/css/bootstrap.css';
+import Grid from '@material-ui/core/Grid';
 
   const useStyles = makeStyles({
     root: {
@@ -16,12 +17,18 @@ import 'bootstrap/dist/css/bootstrap.css';
     media: {
       height: 140,
     },
+  
   });
   
   function MediaCard() {
     const classes = useStyles();
   
     return (
+        <Grid
+        alignItems="center"
+        justify="center"
+       >
+           <Grid item xs={12}>
       <Card className={classes.root}>
         <CardActionArea>
           <CardMedia
@@ -54,25 +61,20 @@ import 'bootstrap/dist/css/bootstrap.css';
           </Button>
         </CardActions>
       </Card>
+      </Grid>      
+ </Grid>
     );
   }
 
-class QuestionsComponent extends Component{
+class QuestionsComponent extends Component {
     constructor(props){
         super(props);
     }
     
     render(){
-        return(
-            <div className="container">
-               <div className="">
-                    <div className="col-sm">
-                        <MediaCard/>
-                    </div>
-               </div>
-            </div>
-            
-        )
+        return(        
+            <MediaCard/>
+        );
     }
 }
 

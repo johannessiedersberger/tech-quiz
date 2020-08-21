@@ -9,7 +9,13 @@ class MainComponent extends Component {
         return(
             <div>
                 <HeaderComponent/>
-                <QuestionsComponent/>
+                    <div className="container-fluid" >
+                        <div className="row">
+                            <div style={{float: "none", margin: "0 auto" }} >
+                                <QuestionsComponent/>
+                            </div>
+                        </div>
+                    </div>
             </div>
         );
         
