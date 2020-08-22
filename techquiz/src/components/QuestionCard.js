@@ -24,8 +24,15 @@ class QuestionCard extends Component {
         }
     }
     
-    buttonClick(){
-        this.setState({ buttonColors:{ [this.props.correctAnswer] : "primary"}})
+    buttonClick(buttonName){
+        console.log(this.props.correctAnswer + buttonName);
+        if(this.props.correctAnswer === buttonName){
+            this.setState({ buttonColors:{ [this.props.correctAnswer] : "primary"}})
+        }
+        else{
+            this.setState({ buttonColors:{ [buttonName] : "secondary"}})
+        }
+        
     }
 
     render(){
@@ -51,16 +58,16 @@ class QuestionCard extends Component {
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
-                              <Button variant="contained" size="small" color={this.state.buttonColors.one} onClick={() => this.buttonClick() }>
+                              <Button variant="contained" size="small" color={this.state.buttonColors.one} onClick={() => this.buttonClick("one") }>
                                   {this.props.answers.one}
                               </Button>
-                              <Button variant="contained" size="small" color={this.state.buttonColors.two}>
+                              <Button variant="contained" size="small" color={this.state.buttonColors.two} onClick={() => this.buttonClick("two") }>
                                   {this.props.answers.two}
                               </Button>
-                              <Button variant="contained" size="small" color={this.state.buttonColors.three}>
+                              <Button variant="contained" size="small" color={this.state.buttonColors.three} onClick={() => this.buttonClick("three") }>
                                   {this.props.answers.three}
                               </Button>
-                              <Button variant="contained" size="small" color={this.state.buttonColors.four}>
+                              <Button variant="contained" size="small" color={this.state.buttonColors.four} onClick={() => this.buttonClick("four") }>
                                   {this.props.answers.four}
                               </Button>
                         </CardActions>
