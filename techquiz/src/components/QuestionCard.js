@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import 'bootstrap/dist/css/bootstrap.css';
 import Grid from '@material-ui/core/Grid';
+import { green } from '@material-ui/core/colors';
   
 class QuestionCard extends Component {
 
@@ -20,63 +21,84 @@ class QuestionCard extends Component {
                 two: "default",
                 three: "default",
                 four: "default"
-            }
+            },
+            questionAnswered: "hidden", 
+            answerCorrect: false
         }
     }
     
     buttonClick(buttonName){
-        console.log(this.props.correctAnswer + buttonName);
-        if(this.props.correctAnswer === buttonName){
-            this.setState({ buttonColors:{ [this.props.correctAnswer] : "primary"}})
+        if(this.state.questionAnswered === "visible"){ // already answered
+            return;
         }
-        else{
-            this.setState({ buttonColors:{ [buttonName] : "secondary"}})
+        
+        if(this.props.correctAnswer === buttonName){ // true
+            this.setState({ buttonColors:{ [this.props.correctAnswer] : "primary"}, questionAnswered: "visible", answerCorrect: true});
+            
+        }
+        else{ // false
+            this.setState({ buttonColors:{ [buttonName] : "secondary"},  questionAnswered: "visible", answerCorrect: false});
         }
         
     }
 
     render(){
         return (
-            <Grid
-                alignItems="center"
-                justify="center"
-            >
-                <Grid item xs={12}>
-                    <Card style={{maxWidth: 345}}>
-                        <CardActionArea>
-                            <CardMedia
-                                style={{height: 140}}
-                                image={this.props.image}
-                            />
-                            <CardContent>
-                                  <Typography gutterBottom variant="h5" component="h2">
-                                      {this.props.category}
-                                  </Typography>
-                                  <Typography variant="body2" color="textSecondary" component="p">
-                                      {this.props.question}
-                                  </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                              <Button variant="contained" size="small" color={this.state.buttonColors.one} onClick={() => this.buttonClick("one") }>
-                                  {this.props.answers.one}
-                              </Button>
-                              <Button variant="contained" size="small" color={this.state.buttonColors.two} onClick={() => this.buttonClick("two") }>
-                                  {this.props.answers.two}
-                              </Button>
-                              <Button variant="contained" size="small" color={this.state.buttonColors.three} onClick={() => this.buttonClick("three") }>
-                                  {this.props.answers.three}
-                              </Button>
-                              <Button variant="contained" size="small" color={this.state.buttonColors.four} onClick={() => this.buttonClick("four") }>
-                                  {this.props.answers.four}
-                              </Button>
-                        </CardActions>
-                    </Card>
-                </Grid>
-            </Grid>
+            <div className="container">
+                <div className="row">
+                        <Grid
+                        alignItems="center"
+                        justify="center"
+                    >
+                        <Grid item xs={12}>
+                            <Card style={{maxWidth: 345}}>
+                                <CardActionArea>
+                                    <CardMedia
+                                        style={{height: 140}}
+                                        image={this.props.image}
+                                    />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            {this.props.category}
+                                        </Typography>
+                                        <Typography variant="body2" color="textSecondary" component="p">
+                                            {this.props.question}
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                                <CardActions>
+                                    <Button variant="contained" size="small" color={this.state.buttonColors.one} onClick={() => this.buttonClick("one") }>
+                                        {this.props.answers.one}
+                                    </Button>
+                                    <Button variant="contained" size="small" color={this.state.buttonColors.two} onClick={() => this.buttonClick("two") }>
+                                        {this.props.answers.two}
+                                    </Button>
+                                    <Button variant="contained" size="small" color={this.state.buttonColors.three} onClick={() => this.buttonClick("three") }>
+                                        {this.props.answers.three}
+                                    </Button>
+                                    <Button variant="contained" size="small" color={this.state.buttonColors.four} onClick={() => this.buttonClick("four") }>
+                                        {this.props.answers.four}
+                                    </Button>
+                                </CardActions>
+                            </Card>
+                        </Grid>
+                    </Grid>
+                </div>
+                <div className="row justify-content-center" style={{padding: 10, visibility: this.state.questionAnswered}}>
+                    <p class="text-center" style={{color: this.state.answerCorrect ? "green" : "red"}}>
+                        Answer {this.state.answerCorrect.toString()}
+                    </p>                   
+                </div>
+                <div className="row justify-content-center" style={{padding: 10}}>
+                    <Button variant="contained" size="small">
+                        Next  
+                    </Button>
+                </div>
+            </div>
+           
         );
     }
-    }
+}
     
 
   export default QuestionCard;
