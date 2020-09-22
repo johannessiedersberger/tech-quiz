@@ -37,6 +37,11 @@ class QuestionCard extends Component {
         
     }
 
+    loadNextQuestion(){
+        this.props.nextQuestion();
+        this.setState({questionAnswered: "hidden", answerCorrect: false});
+    }
+
     render(){
         return (
             <div className="container">
@@ -85,7 +90,7 @@ class QuestionCard extends Component {
                     </p>                   
                 </div>
                 <div className="row justify-content-center" style={{padding: 10}}>
-                    <Button variant="contained" size="small" onClick={() => this.props.nextQuestion()}>
+                    <Button variant="contained" size="small" onClick={() => this.loadNextQuestion()}>
                         Next  
                     </Button>
                 </div>
