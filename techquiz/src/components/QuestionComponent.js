@@ -9,12 +9,12 @@ class QuestionsComponent extends Component {
     render(){
         return(        
             <QuestionCard
-                category="Cars"
-                question="Which was the first company in California
-                to be granted a permit to allow driverless vehicles on public roads?"
-                image="https://www.riddle.com/imageservice/q_80,f_auto,c_fill,w_960,h_540/yucp0bhylyfxnkacespt"
-                answers={{one: "Cruise", two: "Tesla", three: "Zoox", four: "Waymo"}}
-                correctAnswer={"four"}
+                category={this.props.question.category}
+                question={this.props.question.question}
+                image={this.props.question.image}
+                answers={this.props.question.answers}
+                correctAnswer={this.props.question.correctAnswer}
+                nextQuestion={() => this.props.nextQuestion()}
             />
         );
     }

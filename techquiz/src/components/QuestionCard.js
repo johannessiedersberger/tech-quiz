@@ -16,12 +16,7 @@ class QuestionCard extends Component {
     constructor(props){
         super(props);
         this.state = {
-            buttonColors: {
-                one: "default",
-                two: "default",
-                three: "default",
-                four: "default"
-            },
+            buttonColors: ["default","default","default","default"],
             questionAnswered: "hidden", 
             answerCorrect: false
         }
@@ -67,17 +62,17 @@ class QuestionCard extends Component {
                                     </CardContent>
                                 </CardActionArea>
                                 <CardActions>
-                                    <Button variant="contained" size="small" color={this.state.buttonColors.one} onClick={() => this.buttonClick("one") }>
-                                        {this.props.answers.one}
+                                    <Button variant="contained" size="small" color={this.state.buttonColors.one} onClick={() => this.buttonClick(0) }>
+                                        {this.props.answers[0]}
                                     </Button>
-                                    <Button variant="contained" size="small" color={this.state.buttonColors.two} onClick={() => this.buttonClick("two") }>
-                                        {this.props.answers.two}
+                                    <Button variant="contained" size="small" color={this.state.buttonColors.two} onClick={() => this.buttonClick(1) }>
+                                        {this.props.answers[1]}
                                     </Button>
-                                    <Button variant="contained" size="small" color={this.state.buttonColors.three} onClick={() => this.buttonClick("three") }>
-                                        {this.props.answers.three}
+                                    <Button variant="contained" size="small" color={this.state.buttonColors.three} onClick={() => this.buttonClick(2)}>
+                                        {this.props.answers[2]}
                                     </Button>
-                                    <Button variant="contained" size="small" color={this.state.buttonColors.four} onClick={() => this.buttonClick("four") }>
-                                        {this.props.answers.four}
+                                    <Button variant="contained" size="small" color={this.state.buttonColors.four} onClick={() => this.buttonClick(3) }>
+                                        {this.props.answers[3]}
                                     </Button>
                                 </CardActions>
                             </Card>
@@ -90,7 +85,7 @@ class QuestionCard extends Component {
                     </p>                   
                 </div>
                 <div className="row justify-content-center" style={{padding: 10}}>
-                    <Button variant="contained" size="small">
+                    <Button variant="contained" size="small" onClick={() => this.props.nextQuestion()}>
                         Next  
                     </Button>
                 </div>
@@ -99,6 +94,8 @@ class QuestionCard extends Component {
         );
     }
 }
+
+
     
 
   export default QuestionCard;

@@ -4,10 +4,14 @@ import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
     Form, FormGroup, Input, Label, NavbarText } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 
+
 class HeaderComponent extends Component {
     
     constructor(props){
         super(props);
+        this.state = {
+           questions: [],
+          };
     }
 
     render(){
